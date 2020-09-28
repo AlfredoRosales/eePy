@@ -1,26 +1,40 @@
 import sqlite3
-miConexion=sqlite3.connect('SegundaBase')
+miConexion=sqlite3.connect('TerceraBase')
 miCursor=miConexion.cursor()
 
+#PK incremental (por default es UNIQUE)
 """ miCursor.execute('''
     CREATE TABLE PRODUCTOS(
-        CODIGO_ARTICULO VARCHAR(4) PRIMARY KEY,  #Llave Primaria
-        NOMBRE_ARTICULO VARCHAR(50),
+        ID INTEGER PRIMARY KEY AUTOINCREMENT, 
+        NOMBRE_ARTICULO VARCHAR(50) UNIQUE,
         PRECIO INTEGER,
         SECCION VARCHAR(20)
     )  
 ''') """
-
+### CREATE ###
 """ productos=[
-    ('AR01','Pelota',20,'Juguetería'),
-    ('AR02','Pantalón',15,'Confección'),
-    ('AR03','Destornillador',25,'Ferretería'),
-    ('AR04','Jarrón',45,'Cerámica')
-]
+    ('Pelota',20,'Juguetería'),
+    ('Pantalón',15,'Confección'),
+    ('Destornillador',25,'Ferretería'),
+    ('Jarrón',45,'Cerámica')
+] """
 
-miCursor.executemany("INSERT INTO PRODUCTOS VALUES (?,?,?,?)", productos) """
+#miCursor.executemany("INSERT INTO PRODUCTOS VALUES (NULL,?,?,?)", productos)
+# miCursor.execute("INSERT INTO PRODUCTOS VALUES (Null,'Tren',15,'Juguetería')") # Agregar solo un registro
 
-miCursor.execute("INSERT INTO PRODUCTOS VALUES ('AR05','Tren',15,'Juguetería')")
+### CONSULTA ###
+# miCursor.execute("SELECT * FROM PRODUCTOS WHERE  SECCION='Confección'")  # Key Sensitive!!!!
+#productos=miCursor.fetchall()
+#print(productos)
+
+
+### UPDATE ###
+
+#miCursor.execute("UPDATE PRODUCTOS SET PRECIO=35 WHERE NOMBRE_ARTICULO='Pelota'")
+
+### DELETE ###
+
+#miCursor.execute("DELETE FROM PRODUCTOS WHERE ID=5")
 
 
 miConexion.commit()
