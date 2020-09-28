@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="eel.js"></script>              <!-- Incluir en todas las páginas -->
+    <script>
+        function callPython(){
+            eel.hello()
+        }
+        function callSegunda(){
+            eel.segunda()
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primera Página</title>
+</head>
+<body>
+    <h1>Hello world!</h1>
+    <button onclick="callPython()"><h1>Click me!</h1></button>      <!-- EL botón llama a la función JS 'callPython' -->
+    <a onclick="callSegunda()" href="second.html">Otra página</a>
+</body>
+</html>
